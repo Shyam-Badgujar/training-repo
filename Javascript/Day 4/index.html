@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reverse String</title>
+</head>
+<body>
+
+   
+
+    <p><b>Original String:</b> I am learning JavaScript</p>
+
+    <button onclick="reverseString()">Reverse String</button>
+
+    <p><b>Reversed String:</b></p>
+    <p id="output"></p>
+
+    <script>
+        function reverseString() {
+            var str = "I am learning JavaScript";
+            var reversedStr = "";
+
+           
+            for (var i = str.length - 1; i >= 0; i--) {
+                reversedStr = reversedStr + str[i];
+            }
+
+            document.getElementById("output").innerHTML = reversedStr;
+        }
+    </script>
+
+</body>
+</html>

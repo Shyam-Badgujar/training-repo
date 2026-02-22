@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+</head>
+
+<body>
+    <h3 id="question"></h3>
+
+    <div id="answer">
+        <input type="radio" name="answer" value="0"> <span id="opt0"></span><br>
+        <input type="radio" name="answer" value="1"> <span id="opt1"></span><br>
+        <input type="radio" name="answer" value="2"> <span id="opt2"></span><br>
+        <input type="radio" name="answer" value="3"> <span id="opt3"></span><br>
+    </div>
+
+    <br>
+    <button onclick="nextQuestion()">Next</button>
+
+    <h3 id="result"></h3>
+
+
+    <script>
+        var questions = [
+            {
+                q: "What does HTML stand for?",
+                options: ["Hyper Text Markup Language", "High Text Machine Language", "Hyper Tool Markup Language", "None"],
+                answer: 0
+            },
+            {
+                q: "Which language is used for styling web pages?",
+                options: ["HTML", "JQuery", "CSS", "XML"],
+                answer: 2
+            },
+            {
+                q: "Which is not a JavaScript data type?",
+                options: ["Number", "Boolean", "Float", "String"],
+                answer: 2
+            },
+            {
+                q: "Which tag is used for JavaScript?",
+                options: ["<js>", "<script>", "<javascript>", "<code>"],
+                answer: 1
+            },
+            {
+                q: "Which symbol is used for comments in JavaScript?",
+                options: ["//", "<!-- -->", "#", "**"],
+                answer: 0
+            },
+            {
+                q: "Which company developed JavaScript?",
+                options: ["Google", "Microsoft", "Netscape", "Apple"],
+                answer: 2
+            },
+            {
+                q: "Which HTML tag is used for links?",
+                options: ["<a>", "<link>", "<href>", "<url>"],
+                answer: 0
+            },
+            {
+                q: "Which method prints to console?",
+                options: ["print()", "log()", "console.log()", "write()"],
+                answer: 2
+            },
+            {
+                q: "Which operator is used to assign value?",
+                options: ["=", "==", "===", "!="],
+                answer: 0
+            },
+            {
+                q: "JavaScript runs on?",
+                options: ["Server", "Browser", "Compiler", "Database"],
+                answer: 1
+            }
+        ];
+
+
+        var currentQuestion = 0;
+        var score = 0;
+
+
+
+
+        function loadQuestion() {
+
+            document.getElementById('question').innerHTML = "Q" + (currentQuestion + 1) + ". " + questions[currentQuestion].q
+
+            document.getElementById('opt0').innerHTML = questions[currentQuestion].options[0]
+            document.getElementById('opt1').innerHTML = questions[currentQuestion].options[1]
+            document.getElementById('opt2').innerHTML = questions[currentQuestion].options[2]
+            document.getElementById('opt3').innerHTML = questions[currentQuestion].options[3]
+
+
+            var radios = document.getElementsByName("answer");
+            for (var i = 0; i < radios.length; i++) {
+                radios[i].checked = false;
+            }
+        }
+
+        function nextQuestion() {
+            let selected = -1
+            var radios = document.getElementsByName("answer");
+
+            
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    selected = radios[i].value;
+                }
+            }
+
+            if (selected == -1) {
+                alert("Please select an answer");
+                return;
+            }
+
+            if (selected == questions[currentQuestion].answer) {
+                score++;
+            }
+
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                document.getElementById("answer").style.display = "none";
+                document.getElementById("question").innerHTML = "Quiz Completed!";
+                document.getElementById("result").innerHTML =
+                    "Your Score: " + score + " / 10";
+            }
+            
+            
+        }
+        loadQuestion();
+
+        
+
+
+    </script>
+
+</body>
+
+</html>

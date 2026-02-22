@@ -1,0 +1,59 @@
+
+
+.product-form {
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+}
+
+/* Label + input in one row */
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Label styling */
+.form-row label {
+    width: 200px;
+    font-weight: bold;
+}
+
+/* Input & textarea styling */
+.form-row input,
+.form-row textarea {
+    flex: 1;
+    padding: 6px;
+}
+
+/* Submit button aligned right */
+.submit-row {
+    justify-content: flex-end;
+}
+
+.submit-row input {
+    padding: 8px 20px;
+}
+
+/* =====================
+   Responsive for small screens
+===================== */
+
+@media screen and (max-width: 600px) {
+
+    /* Stack label & input vertically */
+    .form-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-row label {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    /* Center submit button */
+    .submit-row {
+        align-items: center;
+    }
+}

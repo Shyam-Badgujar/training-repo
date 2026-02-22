@@ -1,0 +1,32 @@
+
+.carousel {
+  position: relative;
+
+  overflow: hidden;
+}
+
+.carousel img {
+    height:100vh;
+  width: 100%;
+  object-fit: fill;
+  border-radius: 12px;
+  
+}
+
+.btn {
+  position: absolute;
+  top: 50%;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.left { left: 10px; }
+.right { right: 10px; }
+
+.btn:hover {
+  background: black;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tab Functionality</title>
+    <link rel="stylesheet" href="index.css">
+    
+</head>
+<body>
+
+    <h2>Tab Functionality</h2>
+
+  
+    <div class="tabs">
+        <button class="tab active" onclick="openTab(0)">HTML</button>
+        <button class="tab" onclick="openTab(1)">CSS</button>
+        <button class="tab" onclick="openTab(2)">JavaScript</button>
+    </div>
+
+   
+    <div class="content">
+        <div class="tab-content active">
+            <h3>HTML Content</h3>
+            <p>HTML webpage ka structure banata hai.</p>
+        </div>
+
+        <div class="tab-content">
+            <h3>CSS Content</h3>
+            <p>CSS webpage ko style karta hai.</p>
+        </div>
+
+        <div class="tab-content">
+            <h3>JavaScript Content</h3>
+            <p>JavaScript webpage ko interactive banata hai.</p>
+        </div>
+    </div>
+
+    
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Product Form</title>
+</head>
+<body>
+
+    <h1>Add New Product</h1>
+
+    <form  >
+
+        
+        <label>Product Name:</label><br>
+        <input type="text" name="product_name" required minlength="3">
+        <br><br>
+
+       
+        <label>Product Description:</label><br>
+        <textarea name="product_description" rows="4" cols="40" required></textarea>
+        <br><br>
+
+        
+        <label>Product Price:</label><br>
+        <input type="number" name="product_price" required min="1">
+        <br><br>
+
+        
+        <label>Product Image:</label><br>
+        <input type="file" name="product_image" accept="image/*" required>
+        <br><br>
+
+        
+        <label>Date of Manufacturing:</label><br>
+        <input type="date" name="manufacture_date" required>
+        <br><br>
+
+        
+        <input type="submit" value="Add Product">
+
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Image Style Controller</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+  <h2>Image Style Controller</h2>
+
+  <div class="controls">
+    <div class="control-group">
+      <label for="spacing">Spacing</label>
+      <input id="spacing" type="range" min="0" max="100" value="0" />
+      <span class="value" id="spacingValue">0 px</span>
+    </div>
+
+    <div class="control-group">
+      <label for="blur">Blur</label>
+      <input id="blur" type="range" min="0" max="20" value="0" />
+      <span class="value" id="blurValue">0 px</span>
+    </div>
+
+    <div class="control-group">
+      <label for="hue">Color</label>
+      <input id="hue" type="range" min="0" max="360" value="0" />
+      <span class="value" id="hueValue">0 deg</span>
+    </div>
+  </div>
+
+  <div class="image-wrapper">
+    <img src="logo.png" alt="Image" />
+  </div>
+
+  <div>
+    <button id="resetBtn">Reset</button>
+  </div>
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>
