@@ -6,14 +6,13 @@ import TaskItems from '../components/TaskItems'
 import TaskModal from '../components/TaskModal'
 
 function PendingPages() {
-  // BUG FIX: was destructuring as array, also typo 'task' instead of 'tasks'
+
   const { tasks = [], refreshTasks } = useOutletContext()
   const [sortBy, setSortBy] = useState('newest')
   const [selectedTask, setSelectedTask] = useState(null)
   const [showModal, setShowModal] = useState(false)
 
   const sortedPendingTasks = useMemo(() => {
-    // BUG FIX: was using 'task' variable (undefined) instead of 'tasks'
     const filtered = tasks.filter(t =>
       !t.completed ||
       (typeof t.completed === 'string' && t.completed.toLowerCase() === 'no')
@@ -62,7 +61,7 @@ function PendingPages() {
         </div>
       </div>
 
-      {/* BUG FIX: Add Task button was inside the tasks container div */}
+     
       <div onClick={() => setShowModal(true)} className={layoutClasses.addBox}>
         <div className='flex items-center justify-center gap-3 text-gray-500'>
           <div className='w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm'>

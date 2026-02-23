@@ -30,7 +30,6 @@ function TaskTimer({ taskId }) {
 
   return (
     <div className='flex items-center gap-2 mt-2'>
-      {/* Timer Display */}
       <div className={`font-mono text-sm px-2 py-1 rounded-lg  text-center font-semibold
         ${isRunning
           ? 'bg-blue-100 text-blue-700 animate-pulse'
@@ -41,7 +40,6 @@ function TaskTimer({ taskId }) {
         {formatTime(elapsed)}
       </div>
 
-      {/* Start / Pause */}
       <button
         onClick={handleStartPause}
         title={isRunning ? 'Pause Timer' : 'Start Timer'}

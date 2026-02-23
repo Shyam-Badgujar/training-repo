@@ -16,7 +16,6 @@ function Navbar({ user = {}, onLogout }) {
     }
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
-  // BUG: missing dependency array - was re-adding listener on every render
   }, [])
 
   const handleLogout = () => {

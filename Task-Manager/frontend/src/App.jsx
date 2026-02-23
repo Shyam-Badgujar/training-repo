@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Routes, useNavigate, Route, Navigate } from 'react-router-dom'
 import Layout from './components/Layout'
 import Login from './components/Login'
@@ -36,7 +36,7 @@ function App() {
 
   const handleLogout = () => {
     localStorage.removeItem('token')
-    localStorage.removeItem('currentUser') // BUG: was not clearing currentUser
+    localStorage.removeItem('currentUser') 
     setCurrentUser(null)
     navigate('/login', { replace: true })
   }

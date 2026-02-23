@@ -5,7 +5,7 @@ import { useOutletContext } from 'react-router-dom'
 import TaskItems from '../components/TaskItems'
 
 function CompletePages() {
-  // BUG FIX: was destructuring as array [tasks, refreshTasks] instead of object
+  
   const { tasks, refreshTasks } = useOutletContext()
   const [sortBy, setSortBy] = useState('newest')
 
@@ -17,7 +17,7 @@ function CompletePages() {
       .sort((a, b) => {
         switch (sortBy) {
           case 'newest':
-            // BUG FIX: typo createAt → createdAt
+         
             return new Date(b.createdAt) - new Date(a.createdAt)
           case 'oldest':
             return new Date(a.createdAt) - new Date(b.createdAt)

@@ -4,7 +4,7 @@ import { Calendar, CheckCircle2, Clock, MoreVertical } from 'lucide-react'
 import axios from 'axios'
 import { format, isToday } from 'date-fns'
 import TaskModal from './TaskModal.jsx'
-import TaskTimer from './TaskTimer.jsx'// ← ADD THIS
+import TaskTimer from './TaskTimer.jsx'
 
 const API_BASE = 'http://localhost:5000/api/tasks'
 

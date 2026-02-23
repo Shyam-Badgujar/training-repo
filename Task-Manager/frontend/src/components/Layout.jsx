@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import Navbar from './Navbar'
-import { Circle, Clock, TrendingUp, Zap } from 'lucide-react'
+import { Circle, Clock, Zap } from 'lucide-react'
 import { Outlet } from 'react-router-dom'
 import axios from 'axios'
 import Sidebar from './Sidebar'
@@ -17,7 +17,6 @@ function Layout({ user, onLogout }) {
       const token = localStorage.getItem('token')
       if (!token) throw new Error('No token found')
 
-      // BUG FIX: was calling localhost:5173 (frontend) and had /gp suffix
       const { data } = await axios.get("http://localhost:5000/api/tasks/", {
         headers: { Authorization: `Bearer ${token}` }
       })
@@ -106,7 +105,7 @@ function Layout({ user, onLogout }) {
           <div className='xl:col-span-1 space-y-4 sm:space-y-6'>
             <div className='bg-white rounded-xl p-4 sm:p-5 shadow-sm border border-purple-100'>
               <h3 className='text-base sm:text-lg mb-3 sm:mb-4 flex items-center gap-2 font-semibold text-gray-800'>
-                <TrendingUp className='w-4 h-4 sm:h-5 sm:w-5 text-purple-500' />
+                
                 Task Statistics
               </h3>
               <div className='grid grid-cols-2 gap-4 mb-4 sm:mb-6'>
@@ -147,7 +146,7 @@ function Layout({ user, onLogout }) {
                       <p className='text-sm font-medium text-gray-700  whitespace-normal'>
                         {task.title}
                       </p>
-                      {/* BUG FIX: toLocaleDateString(0) is invalid - should be no arg or locale string */}
+                     
                       <p className='text-xs text-gray-500 mt-1'>
                         {task.createdAt ? new Date(task.createdAt).toLocaleDateString() : "No Date"}
                       </p>

@@ -1,37 +1,29 @@
-import { useState, useEffect } from 'react'
-import { LINK_CLASSES, menuItems, PRODUCTIVITY_CARD, SIDEBAR_CLASSES } from '../assets/dummy.jsx'
-import { Menu, Sparkles, X } from 'lucide-react'
+import { LINK_CLASSES } from '../assets/dummy.jsx'
 import { NavLink } from 'react-router-dom'
 
-function Sidebar({user, tasks}) {
-  const [mobileOpen, setMoileOpen] = useState(false)
-  const [showModal, setShowModal] = useState(false)
+const menuItems = [
+    { text: "Dashboard", path: "/" },
+    { text: "Pending Tasks", path: "/pending"},
+    { text: "Completed Tasks", path: "/complete" },
+]
 
-  const totalTasks = tasks?.length || 0
-  const completedTasks = tasks?.filter((t) => t.completed).length || 0
-  const productivity = (totalTasks > 0) ? Math.round(((completedTasks / totalTasks) * 100)) : 0
 
+function Sidebar({user}) {
   const username = user?.name || "User"
   const initial = username.charAt(0).toUpperCase()
 
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "auto"
-    return () => { document.body.style.overflow = "auto" }
-  }, [mobileOpen])
+
 
   const renderMenuItems = (isMobile = false) => (
     <ul className='space-y-2'>
-      {menuItems.map(({ text, path, icon }) => (
+      {menuItems.map(({ text, path}) => (
         <li key={text}>
           <NavLink to={path} className={({ isActive }) => [
             LINK_CLASSES.base,
             isActive ? LINK_CLASSES.active : LINK_CLASSES.inactive,
             isMobile ? 'justify-start' : 'lg:justify-start'
-          ].join(" ")} onClick={() => setMoileOpen(false)}>
-            <span className={LINK_CLASSES.icon}>
-              {icon}
-            </span>
-            <span className={`${LINK_CLASSES.text} ${isMobile ? 'block' : 'hidden lg:block'}`}>
+          ].join(" ")} >    
+            <span className={`${LINK_CLASSES.text}  'hidden lg:block'`}>
               {text}
             </span>
           </NavLink>
@@ -42,73 +34,22 @@ function Sidebar({user, tasks}) {
 
   return (
     <>
-      <div className={SIDEBAR_CLASSES.desktop}>
+      <div className="hidden md:flex flex-col fixed h-full w-20 lg:w-64 bg-white/90 backdrop-blur-sm border-r border-purple-100 shadow-sm z-20 transition-all duration-300">
         <div className='p-5 border-b border-blue-100 lg:block hidden'>
           <div className='flex items-center gap-3'>
-            <div className='w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-md'>
+            <div className='w-10 h-10 rounded-full flex items-center justify-center text-white bg-black font-bold shadow-md'>
               {initial}
             </div>
-
             <div>
               <h2 className='text-lg font-bold text-gray-800'>Hey, {username} </h2>
-              <p className='text-sm text-blue-500 font-medium flex items-center gap-1'>
-                <Sparkles className='w-3 h-3 ' /> Let's crush some tasks
-              </p>
             </div>
           </div>
         </div>
 
         <div className='p-4 space-y-6 overflow-y-auto flex-1'>
-          <div className={PRODUCTIVITY_CARD.container}>
-            <div className={PRODUCTIVITY_CARD.header}>
-              <h3 className={PRODUCTIVITY_CARD.label}>Productivity</h3>
-              <span className={PRODUCTIVITY_CARD.badge}>{productivity}%</span>
-            </div>
-            <div className={PRODUCTIVITY_CARD.barBg}>
-              <div className={PRODUCTIVITY_CARD.barFg}
-                style={{ width: `${productivity}%` }} />
-
-
-            </div>
-          </div>
           {renderMenuItems()}
-
         </div>
       </div>
-
-      {!mobileOpen && (
-        <button onClick={() => setMoileOpen(true)}
-          className={SIDEBAR_CLASSES.mobileButton}>
-          <Menu className='w-5 h-5' />
-        </button>
-      )}
-
-      {mobileOpen && (
-        <div className='fixed inset-0 z-40'>
-          <div className={SIDEBAR_CLASSES.mobileDrawerBackdrop} onClick={() => setMoileOpen(false)} />
-
-          <div className={SIDEBAR_CLASSES.mobileDrawer} onClick={(e) => e.stopPropagation()}>
-            <div className='flex justify-between items-center mb-4 border-b pb-2'>
-              <h2 className=' text-lg font-bold text-blue-600'>Menu</h2>
-              <button onClick={() => setMoileOpen(false)} className='text-gray-700 hover:text-blue-600'>
-                <X className='w-5 h-5' />
-              </button>
-            </div>
-            <div className='flex items-center gap-3 mb-6 '>
-              <div className='w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-md'>
-                {initial}
-              </div>
-              <div>
-              <h2 className='text-lg font-bold mt-16 text-gray-800'>Hey, {username} </h2>
-              <p className='text-sm text-blue-500 font-medium flex items-center gap-1'>
-                <Sparkles className='w-3 h-3 ' /> Let's crush some tasks
-              </p>
-            </div> ̰
-            </div>
-            {renderMenuItems(true)}
-          </div>
-        </div>
-      )} 
     </>
   )
 }

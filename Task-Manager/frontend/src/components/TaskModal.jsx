@@ -50,7 +50,6 @@ function TaskModal({ isOpen, onClose, tasktoEdit, onSave, onLogout }) {
     setError(null)
     try {
       const isEdit = Boolean(taskData.id)
-      // BUG: URLs had /gp suffix - fixed to / and /:id
       const url = isEdit ? `${API_BASE}/${taskData.id}` : `${API_BASE}/`
       const resp = await fetch(url, {
         method: isEdit ? 'PUT' : 'POST',
@@ -60,14 +59,14 @@ function TaskModal({ isOpen, onClose, tasktoEdit, onSave, onLogout }) {
       if (!resp.ok) {
         if (resp.status === 401) return onLogout?.()
         const err = await resp.json()
-        throw new Error(err.message || 'Failed to save Task') // BUG: typo "sae" fixed
+        throw new Error(err.message || 'Failed to save Task') 
       }
       const saved = await resp.json()
       onSave?.(saved)
       onClose()
     } catch (error) {
       console.error(error)
-      setError(error.message || 'An unexpected error occurred') // BUG: typo "onccured" fixed
+      setError(error.message || 'An unexpected error occurred') 
     } finally {
       setLoading(false)
     }
@@ -108,7 +107,7 @@ function TaskModal({ isOpen, onClose, tasktoEdit, onSave, onLogout }) {
               <label className='flex items-center gap-1 text-sm font-medium text-gray-700 mb-1'>
                 <Flag className='w-4 h-4 text-blue-500' /> Priority
               </label>
-              {/* BUG: all option values were empty string "" */}
+            
               <select name="priority" value={taskData.priority} onChange={handleChange}
                 className={`${baseControlClasses} ${priorityStyles[taskData.priority]}`}>
                 <option value="Low">Low</option>

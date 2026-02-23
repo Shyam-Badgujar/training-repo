@@ -1,4 +1,4 @@
-// server.js - dotenv MUST be first before any other import
+
 import dotenv from 'dotenv'
 dotenv.config()
 

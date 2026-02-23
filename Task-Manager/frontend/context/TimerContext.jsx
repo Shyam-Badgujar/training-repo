@@ -4,7 +4,7 @@ const TimerContext = createContext(null)
 
 export function TimerProvider({ children }) {
   const [activeTaskId, setActiveTaskId] = useState(null)
-  const [times, setTimes] = useState({})       // { taskId: seconds }
+  const [times, setTimes] = useState({})     
   const intervalRef = useRef(null)
 
   const clearTimer = useCallback(() => {
@@ -15,7 +15,7 @@ export function TimerProvider({ children }) {
   }, [])
 
   const startTimer = useCallback((taskId) => {
-    // Stop any currently running timer
+
     clearTimer()
     setActiveTaskId(taskId)
 
@@ -40,7 +40,7 @@ export function TimerProvider({ children }) {
     setTimes(prev => ({ ...prev, [taskId]: 0 }))
   }, [activeTaskId, clearTimer])
 
-  // Cleanup on unmount
+
   useEffect(() => {
     return () => clearTimer()
   }, [clearTimer])

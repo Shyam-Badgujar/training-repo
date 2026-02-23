@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import {
   BACK_BUTTON,
   FULL_BUTTON,
   INPUT_WRAPPER,
-  INPUTWRAPPER,
   personalFields,
   SECTION_WRAPPER,
 } from "../assets/dummy.jsx";
-import { ChevronLeft, Save, UserCircle } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import axios from "axios";
 
 const API_URL = "http://localhost:5000";
@@ -19,7 +18,7 @@ function Profile({ setCurrentUser }) {
 
   const [profile, setProfile] = useState({
     name: "",
-    email: "",
+    email: ""
   });
 
   const [loading, setLoading] = useState(false);
@@ -84,7 +83,6 @@ function Profile({ setCurrentUser }) {
           name: profile.name,
           avatar: `https://ui-avatars.com/api/?name=${profile.name}&background=random`,
         }));
-
         toast.success("Profile updated successfully!");
       } else {
         toast.error(data.message);
@@ -120,16 +118,12 @@ function Profile({ setCurrentUser }) {
             <h1 className="text-3xl font-bold text-gray-800">
               Account Settings
             </h1>
-            <p className="text-gray-500 text-sm">
-              Manage your profile information
-            </p>
           </div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
           <section className={SECTION_WRAPPER}>
             <div className="flex items-center gap-2 mb-6">
-              <UserCircle className="text-blue-500 w-5 h-5" />
               <h2 className="text-xl font-semibold text-gray-800">
                 Personal Information
               </h2>
@@ -139,7 +133,6 @@ function Profile({ setCurrentUser }) {
               {personalFields.map(
                 ({ name, type, placeholder, icon: Icon }) => (
                   <div key={name} className={INPUT_WRAPPER}>
-                    <Icon className="text-purple-500 w-5 h-5 mr-2" />
                     <input
                       type={type}
                       placeholder={placeholder}
@@ -159,10 +152,9 @@ function Profile({ setCurrentUser }) {
 
               <button
                 type="submit"
-                className={FULL_BUTTON}
+                className="w-full bg-blue-500 text-white py-2.5 rounded-lg hover:shadow-md transition-all duration-200 flex items-center justify-center gap-2"
                 disabled={loading}
               >
-                <Save className="w-4 h-4" />
                 {loading ? "Saving..." : "Save Changes"}
               </button>
             </form>

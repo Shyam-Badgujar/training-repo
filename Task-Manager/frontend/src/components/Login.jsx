@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Eye, EyeOff, LogInIcon, Mail, Lock } from 'lucide-react'
 import { toast, ToastContainer } from 'react-toastify'
-import { BUTTON_CLASSES, INPUTWRAPPER } from '../assets/dummy.jsx'
 import axios from 'axios'
 
 const INITIAL_FORM = { email: "", password: "" }
@@ -23,7 +22,7 @@ function Login({ onSubmit, onSwitchMode }) {
   useEffect(() => {
     const token = localStorage.getItem("token")
     if (token) {
-      // BUG FIX: IIFE was not being invoked - missing () at the end
+     
       (async () => {
         try {
           const { data } = await axios.get(`${url}/api/user/me`, {
@@ -39,7 +38,7 @@ function Login({ onSubmit, onSwitchMode }) {
         } catch {
           localStorage.clear()
         }
-      })() // ← was missing this invocation
+      })() 
     }
   }, [navigate, onSubmit])
 
@@ -84,10 +83,9 @@ function Login({ onSubmit, onSwitchMode }) {
       </div>
       <form onSubmit={handleSubmit} className='space-y-4'>
         {FIELDS.map(({ name, type, placeholder, icon: Icon, isPassword }) => (
-          <div key={name} className={INPUTWRAPPER}>
+          <div key={name} className="flex items-center border border-blue-600 rounded-lg px-3 py-2.5 ">
             <Icon className='text-blue-500 w-5 h-5 mr-2' />
             <input
-              // BUG FIX: password field now correctly uses showPassword to toggle type
               type={isPassword ? (showPassword ? 'text' : 'password') : type}
               placeholder={placeholder}
               value={formData[name]}
@@ -109,7 +107,7 @@ function Login({ onSubmit, onSwitchMode }) {
             className='h-4 w-4 text-blue-500 focus:ring-blue-400 border-gray-300 rounded' />
           <label htmlFor="rememberme" className='ml-2 block text-sm text-gray-700'>Remember Me</label>
         </div>
-        <button type='submit' className={BUTTON_CLASSES} disabled={loading}>
+        <button type='submit' className='w-full bg-blue-500 hover:bg-blue-700 text-white text-sm font-semibold py-2.5 rounded-lg hover:shadow-md transition-all flex items-center justify-center gap-2' disabled={loading}>
           {loading ? "Logging in..." : <><LogInIcon className='w-4 h-4' />Log In</>}
         </button>
       </form>
